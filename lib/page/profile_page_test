@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:listview_app/pages/profile_page.dart';
+
+void main() {
+  testWidgets('Profile Page tampil dengan benar',
+      (WidgetTester tester) async {
+
+    // Jalankan widget
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: ProfilePage(),
+      ),
+    );
+
+    // Pastikan render selesai
+    await tester.pumpAndSettle();
+
+    // Cek AppBar
+    expect(find.text('Profile'), findsOneWidget);
+
+    // Cek nama
+    expect(find.text('Muhammad Ryan Hidayat'), findsOneWidget);
+
+    // Cek tombol
+    expect(find.text('Edit Profile'), findsOneWidget);
+  });
+}

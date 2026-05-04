@@ -11,17 +11,29 @@ class ListPage extends StatelessWidget {
     "Pertemuan 7",
   ];
 
+  // Tambahkan deskripsi untuk setiap pertemuan
+  final List<String> materi = [
+    "Pengenalan Android dan Flutter",
+    "Widget dan button",
+    "Activity dan intent",
+    "Toast dan alert dialog",
+    "Listview dan cardview",
+    "Checkbox dan switch",
+    "Radio button dan dropdown",
+  ];
+
   ListPage({super.key});
 
-  // Fungsi untuk menampilkan pop-up
-  void _showPopup(BuildContext context, String item) {
+  void _showPopup(BuildContext context, String pertemuan, String materi) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          title: const Text("Informasi"),
-          content: Text("Anda memilih $item"),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          title: Text(pertemuan),
+          content: Text(materi),
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
@@ -36,35 +48,45 @@ class ListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Menggunakan Stack/Container untuk background
       body: Container(
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/live.jpg'), // Pastikan path benar
+            image: AssetImage('assets/live.jpg'),
             fit: BoxFit.cover,
           ),
         ),
         child: Container(
-          color: Colors.black.withOpacity(0.5), // Lapisan gelap agar teks terbaca
+          color: Colors.black.withOpacity(0.5),
           child: ListView.separated(
             padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
             itemCount: data.length,
-            separatorBuilder: (context, index) => const Divider(color: Colors.white24),
+            separatorBuilder: (context, index) =>
+                const Divider(color: Colors.white24),
             itemBuilder: (context, index) {
               return Card(
-                color: Colors.white.withOpacity(0.1), // Transparansi card
+                color: Colors.white.withOpacity(0.1),
                 child: ListTile(
                   leading: const Icon(Icons.book, color: Colors.white),
                   title: Text(
                     data[index],
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 16, color: Colors.white),
-                  // Fitur Klik Pop-up
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Colors.white,
+                  ),
                   onTap: () {
-                    _showPopup(context, data[index]);
+                    _showPopup(
+                      context,
+                      data[index],
+                      materi[index], // ini yang penting
+                    );
                   },
                 ),
               );

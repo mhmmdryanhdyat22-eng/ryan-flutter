@@ -12,6 +12,10 @@ dependencies:
     sdk: flutter
   image_picker: ^1.0.7
   cupertino_icons: ^1.0.8
+  simple_alert_dialog: ^1.0.1
+  salomon_bottom_bar: ^3.3.2
+  cherry_toast: ^1.13.0
+  fluttertoast: ^9.0.0
 
 dev_dependencies:
   flutter_test:
